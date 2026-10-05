@@ -36,21 +36,27 @@ The two coordinate sources disagreed by more than 150 m on exactly two shops,
 both PDOK street mismatches (Yo-Yo is on *2e* Jan van der Heijdenstraat; PDOK
 matched *Eerste*). ACD wins those.
 
-Menu photos and logos were sourced from coffeeshopmenus.org. Its
-[About page](https://coffeeshopmenus.org/about.html) says photos are submitted
-by visitors to share with that site's readers; it does not publish a licence or
-explicit permission for CannaMap to copy and redistribute them. The current
-site does serve committed copies from `public/data/menus/`, so that reuse right
-is **unverified**. For example, ACD's [420 Cafe page](https://www.coffeeshopdirect.com/420cafe.html)
+**Photography plan: first-party, not copied menus.** The intended image set is
+original photos Don takes: shop fronts, menus and other useful details. These
+can be captured at high resolution with the shop's location recorded, then
+published as appropriately sized derivatives alongside the shop record. Keep
+the originals and capture metadata in the private/source archive; publish only
+the location and image metadata intended for visitors. The app should not copy
+menu photos from CoffeeshopMenus or other directories.
+
+The current site still serves legacy copies from `public/data/menus/`, sourced
+from coffeeshopmenus.org, and their third-party reuse rights are **unverified**.
+Its [About page](https://coffeeshopmenus.org/about.html) says visitors submit
+photos to share with that site's readers, but publishes no licence or explicit
+permission for CannaMap to redistribute them. ACD's [420 Cafe page](https://www.coffeeshopdirect.com/420cafe.html)
 credits its 5 August 2026 menu photo to `sincitysmoker` and links an older menu
-record back to CoffeeshopMenus. That gives useful provenance, but attribution
-and cross-linking do not establish permission for CannaMap to republish the
-image. Ask the maintainer, Lemming
-([submission/contact page](https://coffeeshopmenus.org/sendamenu.html)), for
-confirmation that contributors authorized third-party redistribution, plus any
-attribution requirements, before treating the images as cleared. The raw scrape
-working directory (`coffeeshopmenus/`) stays out of version control as a local
-cache.
+record back to CoffeeshopMenus; attribution and cross-linking still do not
+establish reuse permission. Replace or remove these legacy copies as first-party
+photos are made, unless the maintainer, Lemming
+([contact/submission page](https://coffeeshopmenus.org/sendamenu.html)), confirms
+redistribution rights from the photographers and any required attribution.
+The raw scrape working directory (`coffeeshopmenus/`) stays out of version
+control as a local cache.
 
 ## Running it
 
