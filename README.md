@@ -36,10 +36,16 @@ The two coordinate sources disagreed by more than 150 m on exactly two shops,
 both PDOK street mismatches (Yo-Yo is on *2e* Jan van der Heijdenstraat; PDOK
 matched *Eerste*). ACD wins those.
 
-Menu photos and logos come from coffeeshopmenus.org, which permits reuse, so
-they are committed and served with the site. The raw scrape working directory
-(`coffeeshopmenus/`) stays out of version control — it is a local cache, and
-everything the app serves has already been copied into `public/data/`.
+Menu photos and logos were sourced from coffeeshopmenus.org. Its
+[About page](https://coffeeshopmenus.org/about.html) says photos are submitted
+by visitors to share with that site's readers; it does not publish a licence or
+explicit permission for CannaMap to copy and redistribute them. The current
+site does serve committed copies from `public/data/menus/`, so that reuse right
+is **unverified**. Ask the maintainer, Lemming
+([submission/contact page](https://coffeeshopmenus.org/sendamenu.html)), for
+permission and any attribution requirements before treating the images as
+cleared. The raw scrape working directory (`coffeeshopmenus/`) stays out of
+version control as a local cache.
 
 ## Running it
 
