@@ -41,11 +41,16 @@ Menu photos and logos were sourced from coffeeshopmenus.org. Its
 by visitors to share with that site's readers; it does not publish a licence or
 explicit permission for CannaMap to copy and redistribute them. The current
 site does serve committed copies from `public/data/menus/`, so that reuse right
-is **unverified**. Ask the maintainer, Lemming
+is **unverified**. For example, ACD's [420 Cafe page](https://www.coffeeshopdirect.com/420cafe.html)
+credits its 5 August 2026 menu photo to `sincitysmoker` and links an older menu
+record back to CoffeeshopMenus. That gives useful provenance, but attribution
+and cross-linking do not establish permission for CannaMap to republish the
+image. Ask the maintainer, Lemming
 ([submission/contact page](https://coffeeshopmenus.org/sendamenu.html)), for
-permission and any attribution requirements before treating the images as
-cleared. The raw scrape working directory (`coffeeshopmenus/`) stays out of
-version control as a local cache.
+confirmation that contributors authorized third-party redistribution, plus any
+attribution requirements, before treating the images as cleared. The raw scrape
+working directory (`coffeeshopmenus/`) stays out of version control as a local
+cache.
 
 ## Running it
 
