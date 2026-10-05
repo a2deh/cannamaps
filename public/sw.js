@@ -1,7 +1,7 @@
 /* CannaMap service worker — offline shell, shop data and map tiles.
  * Bump CACHE_VERSION whenever the shell files change. */
 
-var CACHE_VERSION = 'v25';
+var CACHE_VERSION = 'v26';
 var SHELL_CACHE = 'cannamap-shell-' + CACHE_VERSION;
 var DATA_CACHE = 'cannamap-data-' + CACHE_VERSION;
 var TILE_CACHE = 'cannamap-tiles-' + CACHE_VERSION;
@@ -41,6 +41,7 @@ var DATA_URL_PATTERN = /\/data\/(shops|zones|products)\.json(\?|$)/;
 var MENU_URL_PATTERN = /\/data\/menus\//;
 var TILE_HOSTS = ['tile.openstreetmap.org', 'a.tile.openstreetmap.org',
                   'b.tile.openstreetmap.org', 'c.tile.openstreetmap.org',
+                  'basemaps.cartocdn.com',
                   'a.basemaps.cartocdn.com', 'b.basemaps.cartocdn.com',
                   'c.basemaps.cartocdn.com', 'd.basemaps.cartocdn.com'];
 

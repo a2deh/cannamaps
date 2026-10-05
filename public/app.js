@@ -18,28 +18,27 @@
   var NETHERLANDS = [52.15, 5.35];
   var DEFAULT_ZOOM = 8;
 
-  /* Basemap. All of these are plain raster tiles — no API key, no extra
-   * library — so switching is a one-word change to BASEMAP below. CARTO's
-   * styles are OSM data rendered differently, so street coverage is identical.
-   * `{r}` becomes '@2x' on retina screens for sharp labels. */
+  /* `{r}` becomes '@2x' on retina screens for sharp labels. CARTO's basemaps
+   * use OSM data with CARTO styling; its browser key lives in localStorage. */
+  var CARTO_KEY_KEY = 'cannamap.cartoKey.v1';
   var BASEMAPS = {
     dark: {
-      url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-      subdomains: 'abcd',
+      url: 'https://basemaps.cartocdn.com/rastertiles/dark-matter/{z}/{x}/{y}{r}.png',
+      carto: true,
       maxZoom: 20,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attribution/">CARTO</a>'
     },
     voyager: {
-      url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-      subdomains: 'abcd',
+      url: 'https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+      carto: true,
       maxZoom: 20,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attribution/">CARTO</a>'
     },
     light: {
-      url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-      subdomains: 'abcd',
+      url: 'https://basemaps.cartocdn.com/rastertiles/positron/{z}/{x}/{y}{r}.png',
+      carto: true,
       maxZoom: 20,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attribution/">CARTO</a>'
     },
     osm: {
       url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -406,6 +405,12 @@
    * it goes with it — OSM's tiles and CARTO's carry different credits. */
   function setBasemap(key) {
     var base = BASEMAPS[key] || BASEMAPS[BASEMAP] || BASEMAPS.osm;
+    if (base.carto) {
+      var cartoKey = '';
+      try { cartoKey = localStorage.getItem(CARTO_KEY_KEY) || ''; } catch (err) { /* private mode */ }
+      if (!cartoKey) base = BASEMAPS.osm;
+      else base = Object.assign({}, base, { url: base.url + '?key=' + encodeURIComponent(cartoKey) });
+    }
     if (baseLayer) map.removeLayer(baseLayer);
     baseLayer = L.tileLayer(base.url, {
       subdomains: base.subdomains,
@@ -823,6 +828,21 @@
     var layers = menuGroup();
     menuHeading(layers, 'menu.layers');
     menuSwitch(layers, t('menu.zones'), zonesVisible(), setZonesVisible);
+    menuItem(layers, t('menu.cartoKey'), function () {
+      var current = '';
+      try { current = localStorage.getItem(CARTO_KEY_KEY) || ''; } catch (err) { /* private mode */ }
+      var value = window.prompt(t('menu.cartoKeyPrompt'), current);
+      if (value === null) return;
+      value = value.trim();
+      try {
+        if (value) localStorage.setItem(CARTO_KEY_KEY, value);
+        else localStorage.removeItem(CARTO_KEY_KEY);
+      } catch (err) {
+        toast('Could not save the basemap key in this browser.');
+        return;
+      }
+      setBasemap(prefs.theme === 'light' ? 'light' : BASEMAP);
+    });
 
     var help = menuGroup();
     menuHeading(help, 'menu.help');

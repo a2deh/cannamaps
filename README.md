@@ -54,6 +54,33 @@ Then open http://localhost:8000. `cd public && python3 -m http.server 8000`
 works equally well — `tools/serve.js` is just a zero-dependency equivalent with
 the root and port pinned.
 
+## Basemap providers
+
+CannaMap uses Leaflet with raster tiles. CARTO supplies the current dark,
+light and Voyager styles; they use OpenStreetMap data rendered in CARTO's
+cartography. CARTO's current basemap documentation specifies a key. Until one
+is set, the app falls back to the standard OpenStreetMap tile server, so the
+map remains usable.
+
+To use CARTO, request a basemap key at
+[carto.com/basemaps/apikey](https://carto.com/basemaps/apikey/), then open
+**Menu → On the map → Set CARTO basemap key…** and paste it. The key is stored
+in this browser's `localStorage` under `cannamap.cartoKey.v1`; it is not added
+to source files or sent to this repository. Leave the prompt empty to remove
+the key and return to OpenStreetMap tiles. Restrict the key in CARTO's dashboard
+to `localhost` for development and the deployed CannaMap origin for production.
+Browser keys are visible to users by design; origin restrictions, not secrecy,
+are the protection.
+
+| Provider | What it offers | Trade-off |
+|---|---|---|
+| **CARTO basemaps** | OSM-based raster styles (Dark Matter, Positron, Voyager), CDN and usage dashboard. Current offer: 5M monthly requests free for non-commercial use; 1M for commercial use. | Requires a key and attribution to both OSM and CARTO; check current terms and quotas in the CARTO dashboard. |
+| **OpenStreetMap standard tiles** | The community's standard OSM Carto raster rendering. No API key. | Donation-funded, best effort, no SLA. Follow the [tile usage policy](https://operations.osmfoundation.org/policies/tiles/): visible attribution, normal interactive use only, honor caching, no bulk downloads or offline prefetch. |
+| **Mapbox** | Commercial vector/raster basemaps, Studio styling, SDKs and related mapping APIs. | Requires an account and public access token in the browser; restrict it to the site origin. Usage is metered by product (for example, GL JS map loads); check the [current pricing](https://www.mapbox.com/pricing/). More capability than this Leaflet raster app currently needs. |
+
+The app currently uses CARTO for its styled basemaps and OSM standard tiles as
+the keyless fallback. Attribution stays visible whichever layer is selected.
+
 ## Layout
 
 ```

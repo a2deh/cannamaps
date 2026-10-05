@@ -74,6 +74,8 @@ window.CANNAMAP_I18N = {
     'menu.shareLocation': 'Share location',
     'menu.layers': 'On the map',
     'menu.zones': 'Smoking-ban zones',
+    'menu.cartoKey': 'Set CARTO basemap key…',
+    'menu.cartoKeyPrompt': 'Paste your CARTO basemap key. It is saved only in this browser. Restrict the key to this site and localhost. Leave blank to remove it.',
     'menu.help': 'Something wrong?',
     'menu.updateMenu': 'Update an outdated menu',
     'menu.addPlace': 'Add a missing place',
