@@ -408,8 +408,7 @@
     if (base.carto) {
       var cartoKey = '';
       try { cartoKey = localStorage.getItem(CARTO_KEY_KEY) || ''; } catch (err) { /* private mode */ }
-      if (!cartoKey) base = BASEMAPS.osm;
-      else base = Object.assign({}, base, { url: base.url + '?key=' + encodeURIComponent(cartoKey) });
+      if (cartoKey) base = Object.assign({}, base, { url: base.url + '?key=' + encodeURIComponent(cartoKey) });
     }
     if (baseLayer) map.removeLayer(baseLayer);
     baseLayer = L.tileLayer(base.url, {
